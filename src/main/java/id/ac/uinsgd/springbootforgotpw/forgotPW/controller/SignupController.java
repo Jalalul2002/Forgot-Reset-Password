@@ -18,12 +18,12 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping("/signup")
-public class SignUpController {
+public class SignupController {
     private final UserService userService;
     private final MessageSource messageSource;
 
     @Autowired
-    public SignUpController(UserService userService, MessageSource messageSource) {
+    public SignupController(UserService userService, MessageSource messageSource) {
         this.userService = userService;
         this.messageSource = messageSource;
     }
@@ -34,19 +34,28 @@ public class SignUpController {
     }
 
     @PostMapping
-    public String saveUser(@Valid @ModelAttribute("user")User user, BindingResult result, Model model, RedirectAttributes attributes) {
+    public String saveUser(@Valid @ModelAttribute("user") User user,
+                           BindingResult result,
+                           Model model,
+                           RedirectAttributes attributes) {
         if (result.hasErrors()) {
             return "signup";
         }
         if (userService.findByEmail(user.getEmail()) != null) {
-            model.addAttribute("eror", messageSource.getMessage("EMAIL_EXISTS", new Object[]{}, Locale.ENGLISH));
+            model.addAttribute("error", messageSource.getMessage("EMAIL_EXISTS", new Object[]{}, Locale.ENGLISH));
         }
         user = userService.save(user);
         if (user == null) {
-            model.addAttribute("eror", messageSource.getMessage("EMAIL_NOT_SAVED", new Object[]{}, Locale.ENGLISH));
+            model.addAttribute("error", messageSource.getMessage("EMAIL_NOT_SAVED", new Object[]{}, Locale.ENGLISH));
             return "signup";
         }
-        attributes.addFlashAttribute("success", messageSource.getMessage("EMAIL_SAVED", new Object[]{}, Locale.ENGLISH));
+        attributes.addFlashAttribute("success", messageSource.getMessage("EMAIL_SAVED", new Object[]{},
+                Locale.ENGLISH));
         return "redirect:/signup";
+    }
+
+    @ModelAttribute("user")
+    public User user() {
+        return new User();
     }
 }

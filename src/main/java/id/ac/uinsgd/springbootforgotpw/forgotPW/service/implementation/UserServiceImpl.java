@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
 
+
     @Autowired
     public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
@@ -33,13 +34,11 @@ public class UserServiceImpl implements UserService {
     public User findByEmail(String email) {
         return userRepository.findByEmail(email).orElse(null);
     }
-    
 
     @Override
-    public UserDetails loadUserByUserName(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Email not Found!"));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Email not found!"));
         new AccountStatusUserDetailsChecker().check(user);
-
         return user;
     }
 
@@ -59,7 +58,6 @@ public class UserServiceImpl implements UserService {
             return userRepository.save(user);
         }
         userRepository.save(user);
-
         return user;
     }
 }
