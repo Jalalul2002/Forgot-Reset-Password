@@ -35,8 +35,7 @@ public class ForgotPasswordController {
     private final EmailService emailService;
 
     @Autowired
-    public ForgotPasswordController(UserService userService, MessageSource messageSource,
-                                    PasswordResetTokenService passwordResetTokenService, EmailService emailService) {
+    public ForgotPasswordController(UserService userService, MessageSource messageSource, PasswordResetTokenService passwordResetTokenService, EmailService emailService) {
         this.userService = userService;
         this.messageSource = messageSource;
         this.passwordResetTokenService = passwordResetTokenService;
@@ -49,20 +48,17 @@ public class ForgotPasswordController {
     }
 
     @PostMapping
-    public String processPasswordForgot(@Valid @ModelAttribute("passwordForgot") PasswordForgot passwordForgot,
-                                        BindingResult result,
-                                        Model model,
-                                        RedirectAttributes attributes,
-                                        HttpServletRequest request) {
+    public String processPasswordForgot(@Valid @ModelAttribute("passwordForgot") PasswordForgot passwordForgot, BindingResult result, Model model, RedirectAttributes attributes, HttpServletRequest request) {
         if (result.hasErrors()) {
             return "forgot-password";
         }
+
         User user = userService.findByEmail(passwordForgot.getEmail());
         if (user == null) {
-            model.addAttribute("emailError", messageSource.getMessage("EMAIL_NOT_FOUND", new Object[]{},
-                    Locale.ENGLISH));
+            model.addAttribute("emailError", messageSource.getMessage("EMAIL_NOT_FOUND", new Object[]{}, Locale.ENGLISH));
             return "forgot-password";
         }
+
         // proceed to send email with link to reset password to this email address
         PasswordResetToken token = new PasswordResetToken();
         token.setUser(user);
@@ -70,10 +66,10 @@ public class ForgotPasswordController {
         token.setExpirationDate(LocalDateTime.now().plusMinutes(30));
         token = passwordResetTokenService.save(token);
         if (token == null) {
-            model.addAttribute("tokenError", messageSource.getMessage("TOKEN_NOT_SAVED", new Object[]{},
-                    Locale.ENGLISH));
+            model.addAttribute("tokenError", messageSource.getMessage("TOKEN_NOT_SAVED", new Object[]{}, Locale.ENGLISH));
             return "forgot-password";
         }
+
         Mail mail = new Mail();
         mail.setFrom("no-reply@mohyehia.com");
         mail.setTo(user.getEmail());
@@ -90,8 +86,7 @@ public class ForgotPasswordController {
         if email sent successfully redirect with flash attributes
          */
         emailService.send(mail);
-        attributes.addFlashAttribute("success", messageSource.getMessage("PASSWORD_RESET_TOKEN_SENT", new Object[]{},
-                Locale.ENGLISH));
+        attributes.addFlashAttribute("success", messageSource.getMessage("PASSWORD_RESET_TOKEN_SENT", new Object[]{}, Locale.ENGLISH));
         return "redirect:/forgot-password";
     }
 
