@@ -56,6 +56,7 @@ public class ForgotPasswordController {
         User user = userService.findByEmail(passwordForgot.getEmail());
         if (user == null) {
             model.addAttribute("emailError", messageSource.getMessage("EMAIL_NOT_FOUND", new Object[]{}, Locale.ENGLISH));
+
             return "forgot-password";
         }
 
@@ -67,6 +68,7 @@ public class ForgotPasswordController {
         token = passwordResetTokenService.save(token);
         if (token == null) {
             model.addAttribute("tokenError", messageSource.getMessage("TOKEN_NOT_SAVED", new Object[]{}, Locale.ENGLISH));
+
             return "forgot-password";
         }
 
@@ -87,6 +89,7 @@ public class ForgotPasswordController {
          */
         emailService.send(mail);
         attributes.addFlashAttribute("success", messageSource.getMessage("PASSWORD_RESET_TOKEN_SENT", new Object[]{}, Locale.ENGLISH));
+
         return "redirect:/forgot-password";
     }
 
