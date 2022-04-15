@@ -4,19 +4,25 @@ SIGN UP
 ![signup](img/signup.png) "SIGNUP"
 
 CREATE ACCOUNT
-![signup](img/creat-new.png) "CREATE ACCOUNT"
+![create](img/creat-new.png) "CREATE ACCOUNT"
 
 CREATE SUCCESS
-![signup](img/success-creat.png) "CREATE ACCOUNT SUCCESS"
+![create-succ](img/success-creat.png) "CREATE ACCOUNT SUCCESS"
 
 LOGIN
-![signup](img/login.png) "LOGIN"
+![login](img/login.png) "LOGIN"
 
 LOGIN SUCCESS
-![signup](img/login-success.png) "SIGNUP"
+![login-succ](img/login-success.png) "SIGNUP"
 
 FORGOT PASSWORD
-![signup](img/forgot-password.png) "FORGOT PASSWORD"
+![forgot](img/forgot-password.png) "FORGOT PASSWORD"
 
-SERVER INTERNAL ERROR :| 500
-![signup](img/eror.png) "INTERNAL SERVER ERROR"
+RESET PASSWORD REQUEST SENDED
+![forgot-succ](img/forgot-pass-success.png) "RESET PASSWORD REQUEST SENDED"
+
+EMAIL RESET PASSWORD REQUES
+![email](img/pw-token.png) "EMAIL RESET PASSWORD REQUEST"
+
+RESET PASSWORD
+![reset](img/reset-pw.png) "RESET PASSWORD"
