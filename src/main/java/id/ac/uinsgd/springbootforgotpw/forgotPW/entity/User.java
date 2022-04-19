@@ -15,7 +15,7 @@ import java.util.Set;
 @Data
 @Entity
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-@Table(name = "user")
+@Table(name = "email")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
