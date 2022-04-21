@@ -1,5 +1,7 @@
 # FORGOT-RESET-PASSWORD
 
+HEROKU LINK (https://forgotpwapp.herokuapp.com/signup)
+
 SIGN UP
 ![signup](img/signup.png) "SIGNUP"
 
@@ -26,3 +28,20 @@ EMAIL RESET PASSWORD REQUES
 
 RESET PASSWORD
 ![reset](img/reset-pw.png) "RESET PASSWORD"
+
+--HEROKU
+
+CREATE ACCOUNT
+![create](img/signup_heroku.png) "CREATE ACCOUNT"
+
+LOGIN ACCOUNT
+![create](img/login_heroku.png) "LOGIN ACCOUNT"
+
+FORGOT PASSWORD ACCOUNT
+![create](img/forgot-pw-heroku.png) "FORGOT PASSWORD ACCOUNT"
+
+TOKEN PASSWORD RESET ACCOUNT
+![create](img/pw-token-heroku.png) "TOKEN PASSWORD RESET ACCOUNT"
+
+RESET PASSWORD ACCOUNT
+![create](img/reset-pw-heroku.png) "RESET PASSWORD ACCOUNT"
